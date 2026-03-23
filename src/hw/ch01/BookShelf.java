@@ -32,7 +32,7 @@ public class BookShelf implements Iterable<Book> {
         return new GenreIterator(this, genre);
     }
 
-    public Iterator<Book> iteratorByYear(){
-        return new YearIterator(this);
+    public Iterator<Book> iteratorByYear(String genre){
+        return new YearIterator(this, genre);
     }
 }
