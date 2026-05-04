@@ -26,6 +26,18 @@ public class Directory extends Entry {
     }
 
     @Override
+    public List<Entry> search(String keyword){
+        List<Entry> result = new ArrayList<>();
+        if (getName().contains(keyword)){
+            result.add(this);
+        }
+        for (Entry entry: directory) {
+            result.addAll(entry.search(keyword));
+        }
+        return result;
+    }
+
+    @Override
     protected void printList(String prefix) {
         System.out.println(prefix + "/" + this);
         for (Entry entry: directory) {

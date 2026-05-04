@@ -1,5 +1,7 @@
 package hw.ch11;
 
+import java.util.List;
+
 public abstract class Entry {
     private Entry parent;
 
@@ -13,6 +15,9 @@ public abstract class Entry {
 
     // 크기를 가져온다 
     public abstract int getSize();
+
+    // 검색한다
+    public abstract List<Entry> search(String keyword);
 
     // 목록을 표시한다 
     public void printList() {
