@@ -7,15 +7,23 @@ public class Main {
 
         MultiStringDisplay md = new MultiStringDisplay();
 
-        md.add("Hi!");
-        md.add("Good morning.");
-        md.add("Good night!");
+        md.add("Hello, Java!");
+        md.add("Decorator Pattern");
+        md.add("is powerful.");
+
+        System.out.println("=== [2-1] 원본 출력 ===");
         md.show();
 
-        Display d1 = new SideBorder(md, '#');
+        System.out.println("\n=== [2-2] NumberedBorder 단독 적용 ===");
+        Display d1 = new NumberedBorder(md);
         d1.show();
 
-        Display d2 = new FullBorder(md);
+        System.out.println("\n=== [2-3] FullBorder + NumberedBorder 조합 ===");   
+        Display d2 = new FullBorder(new NumberedBorder(md));
         d2.show();
+
+        System.out.println("\n=== [2-4] SideBorder + NumberedBorder + FullBorder 3단 중첩 ===");
+        Display d3 = new SideBorder(new NumberedBorder(new FullBorder(md)), '*');
+        d3.show();
     }
 }
