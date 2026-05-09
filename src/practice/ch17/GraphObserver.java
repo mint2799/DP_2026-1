@@ -1,0 +1,18 @@
+package practice.ch17;
+
+// 관찰자, 통지받음
+public class GraphObserver implements Observer {
+    @Override
+    public void update(NumberGenerator generator) { // 통지받을 때 호출되는 메소드
+        System.out.print("GraphObserver:");
+        int count = generator.getNumber();
+        for (int i = 0; i < count; i++) {
+            System.out.print("*");
+        }
+        System.out.println("");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+    }
+}
