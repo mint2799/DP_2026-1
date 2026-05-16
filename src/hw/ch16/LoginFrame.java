@@ -15,6 +15,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
     private ColleagueTextField textPass;
     private ColleagueButton buttonOk;
     private ColleagueButton buttonCancel;
+    private ColleagueLabel statusLabel;
 
     // Colleague를 생성하고 배치한 후에 표시한다
     public LoginFrame(String title) {
@@ -23,8 +24,8 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         // 배경색을 설정한다
         setBackground(Color.lightGray);
 
-        // 레이아웃 매니저를 사용해 4×2 그리드를 만든다
-        setLayout(new GridLayout(4, 2));
+        // 레이아웃 매니저를 사용해 5×2 그리드를 만든다
+        setLayout(new GridLayout(5, 2));
 
         // Colleague를 생성한다 
         createColleagues();
@@ -38,6 +39,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         add(textPass);
         add(buttonOk);
         add(buttonCancel);
+        add(statusLabel);
 
         // 활성/비활성 초기 설정을 한다
         colleagueChanged();
@@ -64,6 +66,9 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         buttonOk = new ColleagueButton("OK");
         buttonCancel = new ColleagueButton("Cancel");
 
+        // statusLabel
+        statusLabel = new ColleagueLabel("● 로그인 불가");
+
         // Mediator를 설정한다 
         checkGuest.setMediator(this);
         checkLogin.setMediator(this);
@@ -71,6 +76,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         textPass.setMediator(this);
         buttonOk.setMediator(this);
         buttonCancel.setMediator(this);
+        statusLabel.setMediator(this);
 
         // Listener 설정
         checkGuest.addItemListener(checkGuest);
@@ -89,6 +95,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
             textUser.setColleagueEnabled(false);
             textPass.setColleagueEnabled(false);
             buttonOk.setColleagueEnabled(true);
+            statusLabel.setColleagueEnabled(true);
         } else {
             // 사용자 로그인 
             textUser.setColleagueEnabled(true);
@@ -99,16 +106,19 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
     // textUser 또는 textPass의 변경이 있다 
     // 각 Colleage의 활성/비활성을 판정한다
     private void userpassChanged() {
-        if (textUser.getText().length() > 0) {
+        if (textUser.getText().length() >= 4) {
             textPass.setColleagueEnabled(true);
-            if (textPass.getText().length() > 0) {
+            if (textPass.getText().length() >= 4) {
                 buttonOk.setColleagueEnabled(true);
+                statusLabel.setColleagueEnabled(true);
             } else {
                 buttonOk.setColleagueEnabled(false);
+                statusLabel.setColleagueEnabled(false);
             }
         } else {
             textPass.setColleagueEnabled(false);
             buttonOk.setColleagueEnabled(false);
+            statusLabel.setColleagueEnabled(false);
         }
     }
 
