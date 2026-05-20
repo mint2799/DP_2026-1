@@ -17,7 +17,7 @@ public class EvenNumberGenerator extends NumberGenerator {
 
     @Override
     public void execute() {
-        for (int i = start; i <= end; i += 2) {
+        for (int i = start; i < end; i += 2) {
             currNumber = i;
             notifyObservers();
         }
