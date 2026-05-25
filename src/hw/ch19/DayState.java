@@ -15,7 +15,7 @@ public class DayState implements State {
         if (hour < 9) {
             context.changeState(NightState.getInstance());
         } else if (17 <= hour) {
-            context.changeState(ClosingState.getInstance());  // 여기만 변경
+            context.changeState(ClosingState.getInstance());
         }
     }
 
